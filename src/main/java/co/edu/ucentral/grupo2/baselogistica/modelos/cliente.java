@@ -1,10 +1,13 @@
-package co.edu.ucentral.grupo2.baselogistica.modales;
+package co.edu.ucentral.grupo2.baselogistica.modelos;
+
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,24 +19,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "vehiculo")
+@Table(name= "clientes")
 @Builder
 
-public class conductor{
+public class cliente{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_COND_REL")
-    @SequenceGenerator(name = "SEQ_COND_REL", sequenceName = "SEQ_COND_REL", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CLIE_REL")
+    @SequenceGenerator(name = "SEQ_CLIE_REL", sequenceName = "SEQ_CLIE_REL", allocationSize = 1)
     @Column(name="cedula", nullable =false )
-    private int cedula;
+    private Long cedula;
 
     @Column(name="nombre")
     private String nombre;
 
-    @Column(name="licencia")
-    private int licencia;
+    @Column(name="tipo_documento")
+    private String tipo_documento;
 
-    @Column(name="zona")
-    private String zona;
-
-    
+    @OneToMany(mappedBy = "cliente")
+    private List<pedido> pedidos;
 }

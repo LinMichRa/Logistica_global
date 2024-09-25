@@ -1,10 +1,12 @@
-package co.edu.ucentral.grupo2.baselogistica.modales;
+package co.edu.ucentral.grupo2.baselogistica.modelos;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "clientes")
+@Table(name= "pedidos")
 @Builder
 
 public class pedido{
@@ -40,4 +42,16 @@ public class pedido{
 
     @Column(name="ct_paquetes", nullable =false ) //cantidad paquetes
     private int ct_paquetes;
+
+    @ManyToOne
+    @JoinColumn(name="cliente_cedula")
+    private cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name="despachador_cedula")
+    private despachador despachador;
+
+    @ManyToOne
+    @JoinColumn(name="conductor_cedula")
+    private conductor conductor;
 }
