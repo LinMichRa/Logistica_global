@@ -7,7 +7,7 @@ import co.edu.ucentral.grupo2.baselogistica.modelos.despachador;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoDespachador;
 
 @Service
-public class Despachador {
+public class SerDespachador {
 
     @Autowired
     private RepoDespachador Despachadores;

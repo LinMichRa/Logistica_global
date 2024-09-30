@@ -7,7 +7,7 @@ import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoPedido;
 
 @Service
-public class Pedidos {
+public class SerPedidos {
     @Autowired
     private RepoPedido pedidos;
     

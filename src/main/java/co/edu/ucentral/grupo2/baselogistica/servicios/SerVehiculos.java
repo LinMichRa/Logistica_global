@@ -7,7 +7,7 @@ import co.edu.ucentral.grupo2.baselogistica.modelos.vehiculo;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoVehiculos;
 
 @Service
-public class Vehiculos{
+public class SerVehiculos{
 
     @Autowired
     private RepoVehiculos Vehiculos;

@@ -7,7 +7,7 @@ import co.edu.ucentral.grupo2.baselogistica.modelos.cliente;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoCliente;
 
 @Service
-public class Cliente {
+public class SerCliente {
     @Autowired
     private RepoCliente Clientes;
 

@@ -7,7 +7,7 @@ import co.edu.ucentral.grupo2.baselogistica.modelos.conductor;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoConductor;
 
 @Service
-public class Conductor {
+public class SerConductor {
     @Autowired
     private RepoConductor Conductores;
 
