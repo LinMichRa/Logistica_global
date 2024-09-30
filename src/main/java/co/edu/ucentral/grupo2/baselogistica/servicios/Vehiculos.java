@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.ucentral.grupo2.baselogistica.modelos.vehiculo;
-import co.edu.ucentral.grupo2.baselogistica.repositorios.RepositoriosVehiculos;
+import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoVehiculos;
 
 @Service
 public class Vehiculos{
 
     @Autowired
-    private RepositoriosVehiculos repositoriosVehiculos;
+    private RepoVehiculos Vehiculos;
 
     public vehiculo guardarVehiculo(vehiculo vehiculo){
-        return repositoriosVehiculos.save(vehiculo);
+        return Vehiculos.save(vehiculo);
     }
 
 }
