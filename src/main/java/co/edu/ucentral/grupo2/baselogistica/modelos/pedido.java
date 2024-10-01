@@ -43,6 +43,9 @@ public class pedido{
     @Column(name="ct_paquetes", nullable =false ) //cantidad paquetes
     private int ct_paquetes;
 
+    @Column(name="estado", nullable =false ) //cantidad paquetes
+    private String estado;
+
     @ManyToOne
     @JoinColumn(name="cliente_cedula")
     private cliente cliente;

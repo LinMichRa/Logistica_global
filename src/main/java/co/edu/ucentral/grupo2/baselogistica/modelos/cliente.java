@@ -27,13 +27,13 @@ public class cliente{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CLIE_REL")
     @SequenceGenerator(name = "SEQ_CLIE_REL", sequenceName = "SEQ_CLIE_REL", allocationSize = 1)
     @Column(name="cedula", nullable =false )
-    private Long cedula;
+    private Long cedula;//usuario
 
     @Column(name="nombre")
     private String nombre;
 
     @Column(name="tipo_documento")
-    private String tipo_documento;
+    private String tipo_documento;//contraseña
 
     @OneToMany(mappedBy = "cliente")
     private List<pedido> pedidos;

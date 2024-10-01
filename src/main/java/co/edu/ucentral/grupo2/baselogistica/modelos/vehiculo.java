@@ -1,13 +1,10 @@
 package co.edu.ucentral.grupo2.baselogistica.modelos;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,7 +36,5 @@ public class vehiculo{
     @Column(name="cap_peso") //capacidad de peso
     private int cap_peso;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "conductor_id", referencedColumnName = "cedula")
-    private conductor conductor;
+    
 }
