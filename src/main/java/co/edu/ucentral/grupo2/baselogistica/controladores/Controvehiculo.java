@@ -23,8 +23,8 @@ public class Controvehiculo {
         return new ResponseEntity<>(vehiculoGuardado, HttpStatus.CREATED);
     }
 
-    @PostMapping("/modificarVehiculo")
-    public ResponseEntity<vehiculo>modificarVehiculo(@RequestBody vehiculo vehiculo){
+    @PostMapping("/modificarVehiculo/{id}")
+    public ResponseEntity<vehiculo>modificarVehiculo(@PathVariable("id") Integer id,@ModelAttribute vehiculo vehiculo){
         vehiculo vehiculoModificado = vehiculoServicio.modificarVehiculo(vehiculo);
 
         return new ResponseEntity<>(vehiculoModificado, HttpStatus.OK);
