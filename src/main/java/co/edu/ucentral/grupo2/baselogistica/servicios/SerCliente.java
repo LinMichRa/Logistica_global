@@ -22,6 +22,8 @@ public class SerCliente {
         clienteExistente.setCedula(Cliente.getCedula());
         clienteExistente.setPedidos(Cliente.getPedidos());
         clienteExistente.setTipo_documento(Cliente.getTipo_documento());
+        clienteExistente.setNombre(Cliente.getNombre());
+
         return Clientes.save(clienteExistente);
     }
 }

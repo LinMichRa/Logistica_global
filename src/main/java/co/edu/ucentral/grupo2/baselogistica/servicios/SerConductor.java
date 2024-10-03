@@ -21,6 +21,9 @@ public class SerConductor {
         }
         conductorExistente.setPedidos(Conductor.getPedidos());
         conductorExistente.setZona(Conductor.getZona());
+        conductorExistente.setLicencia(Conductor.getLicencia());
+        conductorExistente.setVehiculo(Conductor.getVehiculo());
+
         return Conductores.save(conductorExistente);
     }
 }

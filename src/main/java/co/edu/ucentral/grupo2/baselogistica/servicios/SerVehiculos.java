@@ -20,6 +20,9 @@ public class SerVehiculos {
         }
         vehiculoExistente.setPlaca(vehiculo.getPlaca());
         vehiculoExistente.setMarca(vehiculo.getMarca());
+        vehiculoExistente.setId(vehiculo.getId());
+        vehiculoExistente.setCap_peso(vehiculo.getCap_peso());
+
 
         return repositoriosVehiculos.save(vehiculoExistente);
     }

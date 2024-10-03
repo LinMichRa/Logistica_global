@@ -23,6 +23,8 @@ public class SerDespachador {
         }
         despachadorExistente.setPedidos(Despachador.getPedidos());
         despachadorExistente.setDireccionBodega(Despachador.getDireccionBodega());
+        despachadorExistente.setCedula(Despachador.getCedula());
+        despachadorExistente.setNombre(Despachador.getNombre());
         return Despachadores.save(despachadorExistente);
     }
 }
