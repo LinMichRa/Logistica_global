@@ -1,7 +1,10 @@
 package co.edu.ucentral.grupo2.baselogistica.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import co.edu.ucentral.grupo2.baselogistica.modelos.conductor;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoConductor;
@@ -26,5 +29,9 @@ public class SerConductor {
         conductorExistente.setVehiculo(Conductor.getVehiculo());
 
         return Conductores.save(conductorExistente);
+    }
+
+    public List<conductor> buscarConductor(){
+        return Conductores.findAll();
     }
 }

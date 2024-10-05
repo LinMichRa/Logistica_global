@@ -1,7 +1,10 @@
 package co.edu.ucentral.grupo2.baselogistica.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import co.edu.ucentral.grupo2.baselogistica.modelos.despachador;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoDespachador;
@@ -25,5 +28,9 @@ public class SerDespachador {
         despachadorExistente.setCedula(Despachador.getCedula());
         despachadorExistente.setNombre(Despachador.getNombre());
         return Despachadores.save(despachadorExistente);
+    }
+
+    public List<despachador> buscarDespachador(){
+        return Despachadores.findAll();
     }
 }

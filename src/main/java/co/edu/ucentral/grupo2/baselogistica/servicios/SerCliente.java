@@ -1,5 +1,7 @@
 package co.edu.ucentral.grupo2.baselogistica.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,9 @@ public class SerCliente {
         clienteExistente.setNombre(Cliente.getNombre());
 
         return Clientes.save(clienteExistente);
+    }
+
+    public List<cliente> buscarCliente(){
+        return Clientes.findAll();
     }
 }

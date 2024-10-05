@@ -1,5 +1,7 @@
 package co.edu.ucentral.grupo2.baselogistica.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,10 @@ public class SerVehiculos{
 
 
         return Vehiculos.save(vehiculoExistente);
+    }
+
+    public List<vehiculo> buscarVehiculo(){
+        return Vehiculos.findAll();
     }
 
 }
