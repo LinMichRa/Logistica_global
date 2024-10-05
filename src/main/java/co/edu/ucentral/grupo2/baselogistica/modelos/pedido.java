@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,9 +22,8 @@ import lombok.NoArgsConstructor;
 
 public class pedido{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PEDI_REL")
-    @SequenceGenerator(name = "SEQ_PEDI_REL", sequenceName = "SEQ_PEDI_REL", allocationSize = 1)
-    @Column(name="id", nullable =false )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable =false)
     private int id;
 
     @Column(name="direccion", nullable =false )
