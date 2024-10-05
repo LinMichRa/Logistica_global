@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import co.edu.ucentral.grupo2.baselogistica.modelos.conductor;
 
 @Repository
-public interface RepoConductor extends  JpaRepository <conductor,Integer> {
+public interface RepoConductor extends  JpaRepository <conductor,Long> {
 
 }

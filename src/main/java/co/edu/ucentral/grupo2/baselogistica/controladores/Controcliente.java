@@ -24,4 +24,10 @@ public class Controcliente {
         return new ResponseEntity<>(clienteGuardado, HttpStatus.CREATED);
     }
     
+    @PostMapping("/modificarCliente/{cedula}")
+    public ResponseEntity<cliente>modificarCliente(@PathVariable("cedula") Long cedula, @ModelAttribute cliente cliente){
+        cliente clienteModificado = clienteServicio.modficarCliente(cliente);
+
+        return new ResponseEntity<>(clienteModificado, HttpStatus.OK);
+    }
 }
