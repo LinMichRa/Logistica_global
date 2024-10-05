@@ -20,8 +20,6 @@ import lombok.NoArgsConstructor;
 
 public class despachador{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_DESPA_REL")
-    @SequenceGenerator(name = "SEQ_DESPA_REL", sequenceName = "SEQ_DESPA_REL", allocationSize = 1)
     @Column(name="cedula", nullable =false )
     private Long cedula;
 
