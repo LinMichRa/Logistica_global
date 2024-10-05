@@ -1,13 +1,17 @@
 package co.edu.ucentral.grupo2.baselogistica.controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import co.edu.ucentral.grupo2.baselogistica.modelos.conductor;
 import co.edu.ucentral.grupo2.baselogistica.servicios.SerConductor;
@@ -30,5 +34,11 @@ public class Controconductor {
         conductor conductorModificado = conductorServicio.modificarConductor(conductor);
 
         return new ResponseEntity<>(conductorModificado, HttpStatus.OK);
+    }
+
+    @GetMapping("/mostrarConductor")
+    public ResponseEntity<List<conductor>> buscarConductor() {
+        List<conductor> conductor = conductorServicio.buscarConductor();
+        return ResponseEntity.ok(conductor);
     }
 }

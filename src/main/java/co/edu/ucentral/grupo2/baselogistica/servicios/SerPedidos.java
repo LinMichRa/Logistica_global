@@ -1,7 +1,10 @@
 package co.edu.ucentral.grupo2.baselogistica.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoPedido;
@@ -27,5 +30,9 @@ public class SerPedidos {
         pedidoExistente.setLocalidad(Pedido.getLocalidad());
         pedidoExistente.setCt_paquetes(Pedido.getCt_paquetes());
         return pedidos.save(pedidoExistente);
+    }
+
+    public List<pedido> buscarPedido(){
+        return pedidos.findAll();
     }
 }

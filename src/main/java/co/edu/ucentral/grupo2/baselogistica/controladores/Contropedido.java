@@ -1,13 +1,17 @@
 package co.edu.ucentral.grupo2.baselogistica.controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
 import co.edu.ucentral.grupo2.baselogistica.servicios.SerPedidos;
@@ -31,4 +35,10 @@ public class Contropedido {
 
         return new ResponseEntity<>(pedidoModificado, HttpStatus.OK);
     }
+
+    @GetMapping("/mostrarPedido")
+    public ResponseEntity<List<pedido>> buscarPedido() {
+        List<pedido> pedido = pedidosServicio.buscarPedido();
+        return ResponseEntity.ok(pedido);
+    }    
 }
