@@ -14,4 +14,17 @@ public class SerConductor {
     public conductor guardarConductor (conductor conductor){
         return Conductores.save(conductor);
     }
+
+    public conductor modificarConductor (conductor Conductor){
+        conductor conductorExistente = Conductores.findById(Conductor.getCedula()).orElse(null);
+        if(conductorExistente == null) {
+            throw new RuntimeException("El conductor que desea buscar con esta cedula"+Conductor.getCedula()+"no se encuentra");
+        }
+        conductorExistente.setPedidos(Conductor.getPedidos());
+        conductorExistente.setZona(Conductor.getZona());
+        conductorExistente.setLicencia(Conductor.getLicencia());
+        conductorExistente.setVehiculo(Conductor.getVehiculo());
+
+        return Conductores.save(conductorExistente);
+    }
 }

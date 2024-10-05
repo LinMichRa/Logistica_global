@@ -16,4 +16,19 @@ public class SerVehiculos{
         return Vehiculos.save(vehiculo);
     }
 
+    public vehiculo modificarVehiculo(vehiculo vehiculo){
+        vehiculo vehiculoExistente = Vehiculos.findById(vehiculo.getId()).orElse(null);
+        if (vehiculoExistente == null){
+            throw new RuntimeException("Vehiculo con este ID"+ vehiculo.getId() + "No fue encontrado.");
+
+        }
+        vehiculoExistente.setPlaca(vehiculo.getPlaca());
+        vehiculoExistente.setMarca(vehiculo.getMarca());
+        vehiculoExistente.setId(vehiculo.getId());
+        vehiculoExistente.setCap_peso(vehiculo.getCap_peso());
+
+
+        return Vehiculos.save(vehiculoExistente);
+    }
+
 }
