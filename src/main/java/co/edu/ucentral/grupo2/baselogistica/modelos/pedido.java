@@ -1,5 +1,7 @@
 package co.edu.ucentral.grupo2.baselogistica.modelos;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +43,17 @@ public class pedido{
     @Column(name="ct_paquetes", nullable =false ) //cantidad paquetes
     private int ct_paquetes;
 
-    @Column(name="estado", nullable =false ) //cantidad paquetes
+    @Column(name="estado", nullable =false ) 
     private String estado;
+
+    @Column(name="fecha_estado1", nullable =false )
+    private Date fecha_estado1;
+
+    @Column(name="fecha_estado2", nullable =false )
+    private Date fecha_estado2;
+
+    @Column(name="fecha_estado3", nullable =false )
+    private Date fecha_estado3;
 
     @ManyToOne
     @JoinColumn(name="cliente_cedula")
