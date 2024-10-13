@@ -8,23 +8,22 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.edu.ucentral.grupo2.baselogistica.modelos.cliente;
+import co.edu.ucentral.grupo2.baselogistica.modelos.despachador;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
-public class JwtUtilCliente {
-
+public class JwtUtilDespachador {
     @Autowired
     private EnvConfig envConfig;
 
     // Generar el token
-    public String generateToken(cliente cliente) {
+    public String generateToken(despachador despachador) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("cedula", cliente.getCedula());
-        claims.put("nombre", cliente.getNombre());
-        return createToken(claims, cliente.getCedula().toString());
+        claims.put("cedula", despachador.getCedula());
+        claims.put("nombre", despachador.getNombre());
+        return createToken(claims, despachador.getCedula().toString());
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
@@ -39,11 +38,10 @@ public class JwtUtilCliente {
     }
 
     // Validar si el token está activo
-    public Boolean validateToken(String token, cliente cliente) {
+    public Boolean validateToken(String token, despachador despachador) {
         final String cedula = extractCedula(token);
-        return (cedula.equals(cliente.getCedula().toString()) && !isTokenExpired(token));
+        return (cedula.equals(despachador.getCedula().toString()) && !isTokenExpired(token));
     }
-
     // Extraer cedula del token
     public String extractCedula(String token) {
         return extractClaim(token, Claims::getSubject);
