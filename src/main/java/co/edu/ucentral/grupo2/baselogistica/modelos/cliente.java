@@ -28,7 +28,13 @@ public class cliente{
     private String nombre;
 
     @Column(name="tipo_documento")
-    private String tipo_documento;//contraseña
+    private String tipo_documento;
+
+    @Column(name="correo")
+    private String correo;
+
+    @Column(name="contraseña")
+    private String contraseña;
 
     @OneToMany(mappedBy = "cliente")
     private List<pedido> pedidos;

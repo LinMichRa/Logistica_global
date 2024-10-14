@@ -43,17 +43,23 @@ public class pedido{
     @Column(name="ct_paquetes", nullable =false ) //cantidad paquetes
     private int ct_paquetes;
 
-    @Column(name="estado", nullable =false ) 
+    @Column(name="estado")
     private String estado;
 
-    @Column(name="fecha_estado1", nullable =false )
-    private Date fecha_estado1;
+    @Column(name="fechaBodega")
+    private Date fechaBodega;
 
-    @Column(name="fecha_estado2", nullable =false )
-    private Date fecha_estado2;
+    @Column(name="fechaTransito")
+    private Date fechaTransito;
 
-    @Column(name="fecha_estado3", nullable =false )
-    private Date fecha_estado3;
+    @Column(name="fechaEntregado")
+    private Date fechaEntregado;
+
+    @Column(name="foto")
+    private String foto;
+
+    @Column(name="novedad")
+    private String novedad;
 
     @ManyToOne
     @JoinColumn(name="cliente_cedula")

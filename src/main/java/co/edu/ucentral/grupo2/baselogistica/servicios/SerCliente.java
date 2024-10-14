@@ -14,6 +14,7 @@ public class SerCliente {
     private RepoCliente Clientes;
 
     public cliente guardarCliente(cliente cliente){
+        cliente.setContraseña(String.valueOf(cliente.getCedula()));
         return Clientes.save(cliente);
     }
 
@@ -23,6 +24,8 @@ public class SerCliente {
             throw new RuntimeException("Cliente con esta cedula"+Cliente.getCedula()+"no fue encontrado");
         }
         clienteExistente.setCedula(Cliente.getCedula());
+        clienteExistente.setCorreo(Cliente.getCorreo());
+        clienteExistente.setContraseña(Cliente.getContraseña());
         clienteExistente.setPedidos(Cliente.getPedidos());
         clienteExistente.setTipo_documento(Cliente.getTipo_documento());
         clienteExistente.setNombre(Cliente.getNombre());

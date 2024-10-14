@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import co.edu.ucentral.grupo2.baselogistica.modelos.conductor;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoConductor;
 
@@ -15,6 +14,7 @@ public class SerConductor {
     private RepoConductor Conductores;
 
     public conductor guardarConductor (conductor conductor){
+        conductor.setContraseña(String.valueOf(conductor.getCedula()));
         return Conductores.save(conductor);
     }
 
@@ -23,10 +23,14 @@ public class SerConductor {
         if(conductorExistente == null) {
             throw new RuntimeException("El conductor que desea buscar con esta cedula"+Conductor.getCedula()+"no se encuentra");
         }
-        conductorExistente.setPedidos(Conductor.getPedidos());
+        conductorExistente.setCedula(Conductor.getCedula());
+        conductorExistente.setNombre(Conductor.getNombre());
+        conductorExistente.setLicencia(Conductor.getLicencia());        conductorExistente.setPedidos(Conductor.getPedidos());
         conductorExistente.setZona(Conductor.getZona());
-        conductorExistente.setLicencia(Conductor.getLicencia());
+        conductorExistente.setCorreo(Conductor.getCorreo());
+        conductorExistente.setContraseña(Conductor.getContraseña());
         conductorExistente.setVehiculo(Conductor.getVehiculo());
+        conductorExistente.setPedidos(Conductor.getPedidos());
 
         return Conductores.save(conductorExistente);
     }
