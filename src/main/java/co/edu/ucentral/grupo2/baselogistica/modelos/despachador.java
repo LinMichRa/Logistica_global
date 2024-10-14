@@ -25,4 +25,10 @@ public class despachador{
 
     @Column(name="direccionBodega") //1 direccion default
     private String direccionBodega;
+    
+    @Column(name="correo")
+    private String correo;
+
+    @Column(name="contraseña")
+    private String contraseña;
 }

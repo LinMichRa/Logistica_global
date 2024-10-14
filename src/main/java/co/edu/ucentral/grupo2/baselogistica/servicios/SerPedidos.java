@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoPedido;
 
@@ -34,5 +33,11 @@ public class SerPedidos {
 
     public List<pedido> buscarPedido(){
         return pedidos.findAll();
+    }
+
+    public pedido actualizarFotoPedido(int id, String nombreArchivo) {
+        pedido pedido = pedidos.findById(id).orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
+        pedido.setFoto(nombreArchivo);
+        return pedidos.save(pedido);
     }
 }

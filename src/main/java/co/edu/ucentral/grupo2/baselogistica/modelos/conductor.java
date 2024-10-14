@@ -36,6 +36,12 @@ public class conductor{
     @Column(name="zona")
     private String zona;
 
+    @Column(name="correo")
+    private String correo;
+
+    @Column(name="contraseña")
+    private String contraseña;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vehiculo_id", referencedColumnName = "id")
     private vehiculo vehiculo;
