@@ -25,8 +25,6 @@ import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoPedido;
 import co.edu.ucentral.grupo2.baselogistica.servicios.SerPedidos;
 
-
-
 @RestController
 @RequestMapping("api/pedidos")
 public class Contropedido {
@@ -37,7 +35,7 @@ public class Contropedido {
     @Autowired
     private RepoPedido repoPedido;
 
-    private static String uploadDirectory = System.getProperty("user.dir") + "/uploads";
+    private static String uploadDirectory = System.getProperty("user.dir") + "uploads";
 
     //Defincion enrutamiento registrar pedido
     @PostMapping("/registroPedido")
@@ -61,7 +59,6 @@ public class Contropedido {
         return ResponseEntity.ok(pedido);
     }
 
-    //Ruta para subir Foto
     @PostMapping("/{id}/subirFoto")
     public ResponseEntity<String> subirFoto(@PathVariable int id, @RequestParam("foto") MultipartFile foto) {
         if (foto.isEmpty()) {
@@ -72,14 +69,22 @@ public class Contropedido {
             // Obtener el nombre original del archivo
             String nombreArchivo = foto.getOriginalFilename();
 
-            // Definir la ruta donde se guardará la imagen
-            String directorioImagenes = uploadDirectory;
-            File dest = new File(directorioImagenes + nombreArchivo);
+            // Obtener la ruta absoluta del proyecto y agregar la carpeta "uploads"
+            String directorioImagenes = System.getProperty("user.dir") + File.separator + "uploads";
+            
+            // Crear la carpeta "uploads" si no existe
+            File directorio = new File(directorioImagenes);
+            if (!directorio.exists()) {
+                directorio.mkdirs(); // Crea el directorio si no existe
+            }
+
+            // Definir la ruta completa donde se guardará la imagen
+            File destino = new File(directorioImagenes + File.separator + nombreArchivo);
 
             // Guardar el archivo en el servidor
-            foto.transferTo(dest);
+            foto.transferTo(destino);
 
-            // Actualizar el pedido con la ruta de la imagen
+            // Actualizar el pedido con la ruta de la imagen (nombre del archivo)
             pedidosServicio.actualizarFotoPedido(id, nombreArchivo);
 
             return ResponseEntity.ok("Imagen subida exitosamente para el pedido con ID: " + id);
@@ -88,6 +93,7 @@ public class Contropedido {
             return ResponseEntity.status(500).body("Error al subir la imagen.");
         }
     }
+
 
     @GetMapping("/pedidos/{id}/foto")
     public ResponseEntity<byte[]> getImage(@PathVariable int id) throws IOException {
