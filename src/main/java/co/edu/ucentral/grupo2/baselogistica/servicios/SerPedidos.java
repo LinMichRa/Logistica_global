@@ -2,9 +2,11 @@ package co.edu.ucentral.grupo2.baselogistica.servicios;
 
 import java.util.List;
 
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.ucentral.grupo2.baselogistica.modelos.despachador;
 import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoPedido;
 
@@ -39,5 +41,9 @@ public class SerPedidos {
         pedido pedido = pedidos.findById(id).orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
         pedido.setFoto(nombreArchivo);
         return pedidos.save(pedido);
+    }
+
+    public Optional<pedido> buscarPedidoPorID(int id){
+        return pedidos.findById(id);
     }
 }

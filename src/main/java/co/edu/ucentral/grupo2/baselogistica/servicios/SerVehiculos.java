@@ -2,9 +2,11 @@ package co.edu.ucentral.grupo2.baselogistica.servicios;
 
 import java.util.List;
 
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
 import co.edu.ucentral.grupo2.baselogistica.modelos.vehiculo;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoVehiculos;
 
@@ -35,6 +37,10 @@ public class SerVehiculos{
 
     public List<vehiculo> buscarVehiculo(){
         return Vehiculos.findAll();
+    }
+
+    public Optional<vehiculo> buscarVehiculoPorID(int id){
+        return vehiculo.findById(id);
     }
 
 }
