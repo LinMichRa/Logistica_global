@@ -1,6 +1,7 @@
 package co.edu.ucentral.grupo2.baselogistica.controladores;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,5 +40,15 @@ public class Controcliente {
     public ResponseEntity<List<cliente>> buscarCliente() {
         List<cliente> cliente = clienteServicio.buscarCliente();
         return ResponseEntity.ok(cliente);
+    }
+
+    @GetMapping("/buscarClientePorCedula/{cedula}")
+    public ResponseEntity<?> buscarClientePorID(@PathVariable("cedula") long cedula){
+        Optional <cliente> clienteOptional = clienteServicio.buscarClienteporID(cedula);
+
+        if(clienteOptional.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(clienteOptional.get());
     }
 }

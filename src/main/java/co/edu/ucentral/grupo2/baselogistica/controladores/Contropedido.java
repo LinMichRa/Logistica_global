@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.edu.ucentral.grupo2.baselogistica.modelos.despachador;
 import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoPedido;
 import co.edu.ucentral.grupo2.baselogistica.servicios.SerPedidos;
@@ -106,6 +107,16 @@ public class Contropedido {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/buscarPedidoPorID/{id}")
+    public ResponseEntity<?> buscarPedidoPorID(@PathVariable("id") int id){
+        Optional <pedido> pedidoOptional = pedidosServicio.buscarPedidoPorID(id);
+
+        if(pedidoOptional.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pedidoOptional.get());
     }
 
 }

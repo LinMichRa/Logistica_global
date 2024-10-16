@@ -1,6 +1,7 @@
 package co.edu.ucentral.grupo2.baselogistica.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,9 @@ public class SerConductor {
 
     public List<conductor> buscarConductor(){
         return Conductores.findAll();
+    }
+
+    public Optional<conductor> buscarConductorPorCedula(Long cedula){
+        return Conductores.findById(cedula);
     }
 }

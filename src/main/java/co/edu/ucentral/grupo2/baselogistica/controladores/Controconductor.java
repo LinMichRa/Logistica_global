@@ -1,6 +1,7 @@
 package co.edu.ucentral.grupo2.baselogistica.controladores;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,5 +41,15 @@ public class Controconductor {
     public ResponseEntity<List<conductor>> buscarConductor() {
         List<conductor> conductor = conductorServicio.buscarConductor();
         return ResponseEntity.ok(conductor);
+    }
+
+    @GetMapping("/buscarConductorPorCedula/{cedula}")
+    public ResponseEntity<?> buscarConductorPorCedula(@PathVariable("cedula") long cedula){
+        Optional <conductor> conductorOptional= conductorServicio.buscarConductorPorCedula(cedula);
+
+        if(conductorOptional.isEmpty()){
+            return  ResponseEntity.notFound().build();
+        }
+        return  ResponseEntity.ok(conductorOptional.get());
     }
 }
