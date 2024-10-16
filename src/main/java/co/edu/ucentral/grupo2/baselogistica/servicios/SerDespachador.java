@@ -1,6 +1,7 @@
 package co.edu.ucentral.grupo2.baselogistica.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,9 @@ public class SerDespachador {
 
     public List<despachador> buscarDespachador(){
         return Despachadores.findAll();
+    }
+
+    public Optional<despachador> buscarDespachadorPorCedula( Long cedula){
+        return Despachadores.findById(cedula);
     }
 }
