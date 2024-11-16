@@ -27,7 +27,7 @@ public class AuthService implements IAuthUseCase{
     //clase que encripta contraseñas
     private final PasswordEncoder passwordEncoder;
 
-    //devuelve jwt del usuario dadas unas credenciales
+    //devuelve jwt del CLIENTE dadas unas credenciales
     public JwtResponseDto signIn(AuthClienteDto authClienteDto){
         Optional<cliente> cliente = repoCliente.getClienteByEmail(authClienteDto.getEmail());
 

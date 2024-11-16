@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 
 public class conductor{
     @Id
-    @Column(name="cedula", nullable =false )
+    @Column(name="cedula", nullable =false,  unique = true)
     private Long cedula;
 
     @Column(name="nombre")

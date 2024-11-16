@@ -40,8 +40,6 @@ public class Controcliente {
 
     @PostMapping("/registrarCliente")
     public ResponseEntity<cliente> guardarCliente(@ModelAttribute cliente cliente){
-        cliente.setContraseña(String.valueOf(cliente.getCedula()));
-        // Codifica la contraseña
         String password = cliente.getContraseña();
         cliente.setContraseña(passwordEncoder.encode(password));
         cliente.setRol(Roles.CLIENTE);

@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 public class cliente{
     @Id
-    @Column(name = "cedula", nullable = false)
+    @Column(name = "cedula", nullable = false,  unique = true)
     private Long cedula;
 
     @Column(name="nombre")
