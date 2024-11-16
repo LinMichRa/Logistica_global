@@ -41,6 +41,9 @@ public class conductor{
 
     @Column(name="contraseña")
     private String contraseña;
+    
+    @Column(name="rol", nullable = false)
+    private String rol;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vehiculo_id", referencedColumnName = "id")

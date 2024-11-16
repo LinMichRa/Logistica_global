@@ -4,24 +4,35 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.ucentral.grupo2.baselogistica.dto.AuthClienteDto;
+import co.edu.ucentral.grupo2.baselogistica.dto.JwtResponseDto;
 import co.edu.ucentral.grupo2.baselogistica.modelos.cliente;
 import co.edu.ucentral.grupo2.baselogistica.servicios.SerCliente;
+import co.edu.ucentral.grupo2.baselogistica.useCase.IAuthUseCase;
+import lombok.RequiredArgsConstructor;
 
 
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/cliente")
 public class Controcliente {
     @Autowired
     private SerCliente clienteServicio;
+
+    private final IAuthUseCase iAuthUseCase;
 
     @PostMapping("/registrarCliente")
     public ResponseEntity<cliente> guardarCliente(@ModelAttribute cliente cliente){
@@ -50,5 +61,15 @@ public class Controcliente {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(clienteOptional.get());
+    }
+
+    @PostMapping(path="/sign-in")
+    public ResponseEntity<JwtResponseDto> signIn(@RequestBody AuthClienteDto authClienteDto) {
+        return ResponseEntity.ok(iAuthUseCase.signIn(authClienteDto));
+    }
+    
+    @PostMapping(path="/sign-out")
+    public ResponseEntity<JwtResponseDto> signOut(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
+        return ResponseEntity.ok(iAuthUseCase.signOut(jwt));
     }
 }

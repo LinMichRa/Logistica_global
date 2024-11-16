@@ -31,4 +31,8 @@ public class despachador{
 
     @Column(name="contraseña")
     private String contraseña;
+
+    @Column(name="rol", nullable = false)
+    private String rol;
+
 }

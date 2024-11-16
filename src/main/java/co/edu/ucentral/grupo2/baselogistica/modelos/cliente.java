@@ -36,6 +36,9 @@ public class cliente{
     @Column(name="contraseña")
     private String contraseña;
 
+    @Column(name="rol", nullable = false)
+    private String rol;
+
     @OneToMany(mappedBy = "cliente")
     private List<pedido> pedidos;
 }

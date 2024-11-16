@@ -7,5 +7,5 @@ import co.edu.ucentral.grupo2.baselogistica.modelos.despachador;
 
 @Repository
 public interface RepoDespachador extends  JpaRepository <despachador,Long> {
-
+    
 }
