@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.ucentral.grupo2.baselogistica.dto.AuthClienteDto;
 import co.edu.ucentral.grupo2.baselogistica.dto.JwtResponseDto;
 import co.edu.ucentral.grupo2.baselogistica.modelos.cliente;
+import co.edu.ucentral.grupo2.baselogistica.security.Roles;
 import co.edu.ucentral.grupo2.baselogistica.servicios.SerCliente;
 import co.edu.ucentral.grupo2.baselogistica.useCase.IAuthUseCase;
 import lombok.RequiredArgsConstructor;
@@ -34,8 +36,15 @@ public class Controcliente {
 
     private final IAuthUseCase iAuthUseCase;
 
+    private final PasswordEncoder passwordEncoder;
+
     @PostMapping("/registrarCliente")
     public ResponseEntity<cliente> guardarCliente(@ModelAttribute cliente cliente){
+        cliente.setContraseña(String.valueOf(cliente.getCedula()));
+        // Codifica la contraseña
+        String password = cliente.getContraseña();
+        cliente.setContraseña(passwordEncoder.encode(password));
+        cliente.setRol(Roles.CLIENTE);
         cliente clienteGuardado = clienteServicio.guardarCliente(cliente);
         return new ResponseEntity<>(clienteGuardado, HttpStatus.CREATED);
     }
