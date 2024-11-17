@@ -6,16 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.ucentral.grupo2.baselogistica.domain.IConductor;
 import co.edu.ucentral.grupo2.baselogistica.modelos.conductor;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoConductor;
 
 @Service
-public class SerConductor {
+public class SerConductor implements IConductor{
     @Autowired
     private RepoConductor Conductores;
 
     public conductor guardarConductor (conductor conductor){
-        conductor.setContraseña(String.valueOf(conductor.getCedula()));
         return Conductores.save(conductor);
     }
 
@@ -42,5 +42,25 @@ public class SerConductor {
 
     public Optional<conductor> buscarConductorPorCedula(Long cedula){
         return Conductores.findById(cedula);
+    }
+
+    @Override
+    public List<conductor> getAll() {
+        return Conductores.findAll();
+    }
+
+    @Override
+    public Optional<conductor> getConductorByCedula(String cedula) {
+        return Conductores.findById(Long.valueOf(cedula));
+    }
+
+    @Override
+    public Optional<conductor> getConductorByEmail(String email) {
+        return Conductores.findByCorreo(email);
+    }
+
+    @Override
+    public void delete(String cedula) {
+        Conductores.deleteById(Long.valueOf(cedula));
     }
 }

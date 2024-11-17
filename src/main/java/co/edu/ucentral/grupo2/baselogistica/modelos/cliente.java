@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 public class cliente{
     @Id
-    @Column(name = "cedula", nullable = false)
+    @Column(name = "cedula", nullable = false,  unique = true)
     private Long cedula;
 
     @Column(name="nombre")
@@ -35,6 +35,9 @@ public class cliente{
 
     @Column(name="contraseña")
     private String contraseña;
+
+    @Column(name="rol", nullable = false)
+    private String rol;
 
     @OneToMany(mappedBy = "cliente")
     private List<pedido> pedidos;

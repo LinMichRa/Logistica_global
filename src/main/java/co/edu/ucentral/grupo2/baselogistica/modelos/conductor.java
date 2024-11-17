@@ -24,11 +24,14 @@ import lombok.NoArgsConstructor;
 
 public class conductor{
     @Id
-    @Column(name="cedula", nullable =false )
+    @Column(name="cedula", nullable =false,  unique = true)
     private Long cedula;
 
     @Column(name="nombre")
     private String nombre;
+
+    @Column(name="tipo_documento")
+    private String tipo_documento;
 
     @Column(name="licencia")
     private int licencia;
@@ -41,6 +44,9 @@ public class conductor{
 
     @Column(name="contraseña")
     private String contraseña;
+    
+    @Column(name="rol")
+    private String rol;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vehiculo_id", referencedColumnName = "id")

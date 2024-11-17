@@ -17,11 +17,14 @@ import lombok.NoArgsConstructor;
 
 public class despachador{
     @Id
-    @Column(name="cedula", nullable =false )
+    @Column(name="cedula", nullable =false, unique = true )
     private Long cedula;
 
     @Column(name="nombre")
     private String nombre;
+
+    @Column(name="tipo_documento")
+    private String tipo_documento;
 
     @Column(name="direccionBodega") //1 direccion default
     private String direccionBodega;
@@ -31,4 +34,8 @@ public class despachador{
 
     @Column(name="contraseña")
     private String contraseña;
+
+    @Column(name="rol")
+    private String rol;
+
 }
