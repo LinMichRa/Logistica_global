@@ -26,7 +26,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     /**
      * Lista blanca de URIs
      */
-    private List<String> urlsToSkip = List.of("/auth", "/swagger-ui.html", "/swagger-ui", "/api-docs");
+    private List<String> urlsToSkip = List.of("/api/cliente/sign-in","/api/cliente/sign-out", "/api/cliente/registrarCliente",  "/swagger-ui.html", "/swagger-ui", "/api-docs");
 
 
     /**
@@ -101,4 +101,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
+    
 }

@@ -5,12 +5,12 @@ import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import co.edu.ucentral.grupo2.baselogistica.domain.ICliente;
 import co.edu.ucentral.grupo2.baselogistica.dto.AuthClienteDto;
 import co.edu.ucentral.grupo2.baselogistica.dto.JwtResponseDto;
 import co.edu.ucentral.grupo2.baselogistica.exception.CustomerNotExistException;
 import co.edu.ucentral.grupo2.baselogistica.exception.PasswordIncorrectException;
 import co.edu.ucentral.grupo2.baselogistica.modelos.cliente;
-import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoCliente;
 import co.edu.ucentral.grupo2.baselogistica.security.JwtAuthenticationProvider;
 import co.edu.ucentral.grupo2.baselogistica.useCase.IAuthUseCase;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 //Se encarga del logueo de un usuario, se usa BCryptPasswordEncoder
 public class AuthService implements IAuthUseCase{
-    private final RepoCliente repoCliente;
+    private final ICliente repoCliente;
 
     //clase que administra los JWTs
     private final JwtAuthenticationProvider jwtAuthenticationProvider;

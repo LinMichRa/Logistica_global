@@ -26,14 +26,13 @@ import co.edu.ucentral.grupo2.baselogistica.useCase.IAuthUseCase;
 import lombok.RequiredArgsConstructor;
 
 
-
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/cliente")
 public class Controcliente {
     @Autowired
     private SerCliente clienteServicio;
-
+    
     private final IAuthUseCase iAuthUseCase;
 
     private final PasswordEncoder passwordEncoder;
@@ -79,4 +78,10 @@ public class Controcliente {
     public ResponseEntity<JwtResponseDto> signOut(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         return ResponseEntity.ok(iAuthUseCase.signOut(jwt));
     }
+
+    /*@PostMapping("/login")
+    public ResponseEntity<JwtResponseDto> loginCliente(@RequestBody cliente cliente) {
+    JwtResponseDto jwtResponse = iAuthUseCase.login(cliente);
+    return ResponseEntity.ok(jwtResponse);
+}*/
 }
