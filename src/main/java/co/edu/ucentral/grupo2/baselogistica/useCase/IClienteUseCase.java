@@ -15,7 +15,7 @@ public interface IClienteUseCase {
 
     Optional<cliente> getClienteByEmail(String email);
 
-    void delt(String cedula);
+    void delete(String cedula);
 }
     
 

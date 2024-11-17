@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class AuthClienteDto {
+public class AuthDto {
     private String email;
 
     private String password;

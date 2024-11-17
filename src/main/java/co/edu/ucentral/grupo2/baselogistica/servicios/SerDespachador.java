@@ -16,7 +16,6 @@ public class SerDespachador {
     private RepoDespachador Despachadores;
 
     public despachador guardarDespachador(despachador despachador){
-        despachador.setContraseña(String.valueOf(despachador.getCedula()));
         despachador.setDireccionBodega("26, Carrera 56");
         return Despachadores.save(despachador);
     }

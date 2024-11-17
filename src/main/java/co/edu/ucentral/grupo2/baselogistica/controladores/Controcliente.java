@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.ucentral.grupo2.baselogistica.dto.AuthClienteDto;
+import co.edu.ucentral.grupo2.baselogistica.dto.AuthDto;
 import co.edu.ucentral.grupo2.baselogistica.dto.JwtResponseDto;
 import co.edu.ucentral.grupo2.baselogistica.modelos.cliente;
 import co.edu.ucentral.grupo2.baselogistica.security.Roles;
@@ -70,7 +70,7 @@ public class Controcliente {
     }
 
     @PostMapping(path="/sign-in")
-    public ResponseEntity<JwtResponseDto> signIn(@RequestBody AuthClienteDto authClienteDto) {
+    public ResponseEntity<JwtResponseDto> signIn(@RequestBody AuthDto authClienteDto) {
         return ResponseEntity.ok(iAuthUseCase.signIn(authClienteDto));
     }
     
