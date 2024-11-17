@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.ucentral.grupo2.baselogistica.modelos.conductor;
 import co.edu.ucentral.grupo2.baselogistica.security.Roles;
 import co.edu.ucentral.grupo2.baselogistica.servicios.SerConductor;
-import co.edu.ucentral.grupo2.baselogistica.useCase.IAuthUseCaseConductor;
 import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
@@ -26,7 +25,6 @@ public class Controconductor {
     @Autowired
     private SerConductor conductorServicio;
 
-    private final IAuthUseCaseConductor iAuthUseCase;
 
     private final PasswordEncoder passwordEncoder;
 
