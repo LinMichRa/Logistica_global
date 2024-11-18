@@ -26,7 +26,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     /**
      * Lista blanca de URIs
      */
-    private List<String> urlsToSkip = List.of("/api/cliente/sign-in","/api/cliente/sign-out", "/api/cliente/registrarCliente",
+    private List<String> urlsToSkip = List.of("/auth/sign-in","/auth/sign-out", "/api/cliente/registrarCliente",
     "/swagger-ui.html", "/swagger-ui", "/api-docs",
     "/api/conductor/sign-in","/api/conductor/sign-out","api/conductor/registrarConductor","api/despachador/registroDespachador");
 
