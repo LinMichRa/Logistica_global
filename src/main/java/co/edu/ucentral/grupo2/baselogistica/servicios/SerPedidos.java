@@ -24,7 +24,7 @@ public class SerPedidos {
             throw new RuntimeException("Pedido con la ID"+Pedido.getId()+"no fue encontrado");
         }
         pedidoExistente.setConductor(Pedido.getConductor());
-        pedidoExistente.setDespachador(Pedido.getDespachador());
+        pedidoExistente.setAdmin(Pedido.getAdmin());
         pedidoExistente.setCiudad(Pedido.getCiudad());
         pedidoExistente.setCliente(Pedido.getCliente());
         pedidoExistente.setLocalidad(Pedido.getLocalidad());

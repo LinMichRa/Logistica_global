@@ -47,21 +47,21 @@ public class AuthService implements IAuthUseCase{
     
     // Verificar si el usuario es un cliente
     Optional<cliente> clienteOpt = repoCliente.getClienteByEmail(email);
-    if (clienteOpt.isPresent() && passwordEncoder.matches(password, clienteOpt.get().getContraseña())) {
+    if (clienteOpt.isPresent() && passwordEncoder.matches(password, clienteOpt.get().getContrasena())) {
         System.out.println("soy cliente");
         return new JwtResponseDto(jwtAuthenticationProvider.createToken(clienteOpt.get()));
     }
 
     // Verificar si el usuario es un conductor
     Optional<conductor> conductorOpt = repoConductor.getConductorByEmail(email);
-    if (conductorOpt.isPresent() && passwordEncoder.matches(password, conductorOpt.get().getContraseña())) {
+    if (conductorOpt.isPresent() && passwordEncoder.matches(password, conductorOpt.get().getContrasena())) {
         System.out.println("soy conductor");
         return new JwtResponseDto(jwtAuthenticationProviderConductor.createToken(conductorOpt.get()));
     }
 
     // Verificar si el usuario es un despachador
     Optional<despachador> despachadorOpt = repoDespachador.getDespachadorByEmail(email);
-    if (despachadorOpt.isPresent() && passwordEncoder.matches(password, despachadorOpt.get().getContraseña())) {
+    if (despachadorOpt.isPresent() && passwordEncoder.matches(password, despachadorOpt.get().getContrasena())) {
         System.out.println("soy despachador");
         return new JwtResponseDto(jwtAuthenticationProviderDespachador.createToken(despachadorOpt.get()));
     }
@@ -76,4 +76,6 @@ public class AuthService implements IAuthUseCase{
         String[] authElements= token.split(" ");
         return new JwtResponseDto(jwtAuthenticationProvider.deleteToken(authElements[1]));
     }
+
+    
 }

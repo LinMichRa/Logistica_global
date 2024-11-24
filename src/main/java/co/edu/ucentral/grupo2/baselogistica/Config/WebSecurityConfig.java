@@ -49,6 +49,7 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        
         http
                 .cors(withDefaults())
                 //.exceptionHandling(handling -> handling.accessDeniedHandler(accessDeniedHandlerException))
@@ -57,15 +58,20 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests ->
                         requests
-                                .requestMatchers("/auth/sign-in","/auth/sign-out","/api/cliente/registrarCliente",
-                                "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**","api/conductor/registrarConductor",
-                                "/api/conductor/sign-in","/api/conductor/sign-out","api/despachador/registroDespachador").permitAll()
+                                .requestMatchers("/auth/sign-in","/auth/sign-out",
+                                "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**","api/conductor/registrarConductor","api/conductor/**",
+                                "/api/conductor/sign-in","/api/conductor/sign-out","api/despachador/modificarDespachador",
+                                "/api/despachador/registroDespachador","/api/vehiculos/registrarVehiculo",
+                                "/api/conductor/registrarConductor", "/api/pedidos/registroPedido").permitAll() //eliminar url's no permmit all
                                 //.requestMatchers(HttpMethod.GET, "/customers").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
-                                .requestMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole(Roles.CLIENTE, Roles.CONDUCTOR, Roles.ADMIN)
+                                .requestMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole(Roles.CLIENTE, Roles.ADMIN)
                                 .requestMatchers(HttpMethod.DELETE, "/cliente/**").hasRole(Roles.ADMIN)
                                 //.requestMatchers(HttpMethod.DELETE, "/customers/**").hasAuthority("ELIMINAR_PRIVILEGE")
+                                .requestMatchers(HttpMethod.GET, "api/despachador/**").hasAuthority(Roles.ADMIN)
+                                .requestMatchers(HttpMethod.POST, "/despachador/**").hasAuthority(Roles.ADMIN)
 
-                                .requestMatchers(HttpMethod.GET, "/pedidos/**").hasAnyRole(Roles.CLIENTE, Roles.ADMIN)
+                                .requestMatchers(HttpMethod.GET, "/pedidos/**").hasAnyRole(Roles.CLIENTE, Roles.CONDUCTOR, Roles.ADMIN)
+                                .requestMatchers(HttpMethod.DELETE, "/pedidos/**").hasAnyRole(Roles.ADMIN)
                                 //.requestMatchers(HttpMethod.POST, "/pedidos/**").hasRole(Roles.ADMIN)
                                 //.requestMatchers("/pedidos").hasAuthority("COMPRAR_PRIVILEGE")
                                 //.requestMatchers("/customers").hasRole(Roles.ADMIN)
@@ -83,13 +89,26 @@ public class WebSecurityConfig {
     @Bean
 CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("*"));
+
+    // Especificar explícitamente los orígenes permitidos
+    configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:4200", "http://tu-otro-dominio.com"));
+
+    // Métodos HTTP permitidos
     configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+
+    // Encabezados permitidos
     configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+
+    // Exponer encabezados personalizados si es necesario
+    configuration.setExposedHeaders(Arrays.asList("Authorization"));
+
+    // Permitir envío de cookies o credenciales
     configuration.setAllowCredentials(true);
+
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
     return source;
 }
+
 
 }

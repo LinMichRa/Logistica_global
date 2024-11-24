@@ -29,7 +29,7 @@ public class SerConductor implements IConductor{
         conductorExistente.setLicencia(Conductor.getLicencia());        conductorExistente.setPedidos(Conductor.getPedidos());
         conductorExistente.setZona(Conductor.getZona());
         conductorExistente.setCorreo(Conductor.getCorreo());
-        conductorExistente.setContraseña(Conductor.getContraseña());
+        conductorExistente.setContrasena(Conductor.getContrasena());
         conductorExistente.setVehiculo(Conductor.getVehiculo());
         conductorExistente.setPedidos(Conductor.getPedidos());
 

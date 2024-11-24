@@ -25,22 +25,22 @@ import lombok.NoArgsConstructor;
 public class pedido{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable =false)
+    @Column(name="id")
     private int id;
 
-    @Column(name="direccion", nullable =false )
+    @Column(name="direccion")
     private String direccion;
 
-    @Column(name="localidad", nullable =false )
+    @Column(name="localidad")
     private String localidad;
 
-    @Column(name="cd_postal", nullable =false ) //codigo postal
+    @Column(name="cd_postal") //codigo postal
     private int cd_postal;
 
-    @Column(name="ciudad", nullable =false )
+    @Column(name="ciudad")
     private String ciudad;
 
-    @Column(name="ct_paquetes", nullable =false ) //cantidad paquetes
+    @Column(name="ct_paquetes") //cantidad paquetes
     private int ct_paquetes;
 
     @Column(name="estado")
@@ -61,13 +61,18 @@ public class pedido{
     @Column(name="novedad")
     private String novedad;
 
+    @Column(name="origen")
+    private String origen;
+
+    @Column(name="destino")
+    private String destino;
     @ManyToOne
     @JoinColumn(name="cliente_cedula")
     private cliente cliente;
 
     @ManyToOne
     @JoinColumn(name="despachador_cedula")
-    private despachador despachador;
+    private despachador admin;
 
     @ManyToOne
     @JoinColumn(name="conductor_cedula")

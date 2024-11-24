@@ -35,7 +35,6 @@ public class JwtAuthenticationProviderConductor {
         String tokenCreated = JWT.create()
             .withClaim("cedula", conductorJwt.getCedula())
             .withClaim("nombre", conductorJwt.getNombre())
-            .withClaim("tipo_documento", conductorJwt.getTipo_documento())
             .withClaim("licencia", conductorJwt.getLicencia())
             .withClaim("correo", conductorJwt.getCorreo())
             .withClaim("rol", conductorJwt.getRol())

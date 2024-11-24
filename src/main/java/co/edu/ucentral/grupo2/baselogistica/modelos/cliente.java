@@ -34,7 +34,7 @@ public class cliente{
     private String correo;
 
     @Column(name="contraseña")
-    private String contraseña;
+    private String contrasena;
 
     @Column(name="rol", nullable = false)
     private String rol;

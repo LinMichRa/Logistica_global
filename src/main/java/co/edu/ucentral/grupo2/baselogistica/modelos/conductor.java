@@ -30,9 +30,6 @@ public class conductor{
     @Column(name="nombre")
     private String nombre;
 
-    @Column(name="tipo_documento")
-    private String tipo_documento;
-
     @Column(name="licencia")
     private int licencia;
 
@@ -43,7 +40,7 @@ public class conductor{
     private String correo;
 
     @Column(name="contraseña")
-    private String contraseña;
+    private String contrasena;
     
     @Column(name="rol")
     private String rol;

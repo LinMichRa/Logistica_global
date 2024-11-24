@@ -17,7 +17,6 @@ public class SerDespachador implements IDespachador{
     private RepoDespachador Despachadores;
 
     public despachador guardarDespachador(despachador despachador){
-        despachador.setDireccionBodega("26, Carrera 56");
         return Despachadores.save(despachador);
     }
 
@@ -28,9 +27,9 @@ public class SerDespachador implements IDespachador{
         }
         despachadorExistente.setCedula(Despachador.getCedula());
         despachadorExistente.setNombre(Despachador.getNombre());
-        despachadorExistente.setDireccionBodega(Despachador.getDireccionBodega());
+        despachadorExistente.setBodega(Despachador.getBodega());
         despachadorExistente.setCorreo(Despachador.getCorreo());
-        despachadorExistente.setContraseña(Despachador.getContraseña());
+        despachadorExistente.setContrasena(Despachador.getContrasena());
         return Despachadores.save(despachadorExistente);
     }
 

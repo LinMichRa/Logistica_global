@@ -35,6 +35,4 @@ public class vehiculo{
 
     @Column(name="cap_peso") //capacidad de peso
     private int cap_peso;
-
-    
 }

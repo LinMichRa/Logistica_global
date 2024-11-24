@@ -26,7 +26,7 @@ public class SerCliente implements ICliente {
         }
         clienteExistente.setCedula(Cliente.getCedula());
         clienteExistente.setCorreo(Cliente.getCorreo());
-        clienteExistente.setContraseña(Cliente.getContraseña());
+        clienteExistente.setContrasena(Cliente.getContrasena());
         clienteExistente.setPedidos(Cliente.getPedidos());
         clienteExistente.setTipo_documento(Cliente.getTipo_documento());
         clienteExistente.setNombre(Cliente.getNombre());

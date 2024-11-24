@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,9 +31,9 @@ public class Controconductor {
 
     //Definicion enrutamiento registrar conductor
     @PostMapping("/registrarConductor")
-    public ResponseEntity<conductor> guardarConductor(@ModelAttribute conductor conductor){
-        String password = conductor.getContraseña();
-        conductor.setContraseña(passwordEncoder.encode(password));
+    public ResponseEntity<conductor> guardarConductor(@RequestBody conductor conductor){
+        String password = conductor.getContrasena();
+        conductor.setContrasena(passwordEncoder.encode(password));
         conductor.setRol(Roles.CONDUCTOR);
         conductor conductorGuardado = conductorServicio.guardarConductor(conductor);
         return new ResponseEntity<>(conductorGuardado, HttpStatus.CREATED);

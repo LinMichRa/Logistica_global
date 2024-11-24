@@ -19,24 +19,18 @@ import lombok.RequiredArgsConstructor;
  * Filtro que valida si la peticion tiene la cabezera de Autorizacion
  */
 @RequiredArgsConstructor
-public class JwtAuthFilter extends OncePerRequestFilter {
+public class JwtAuthFilter extends OncePerRequestFilter{
 
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
 
     /**
      * Lista blanca de URIs
      */
-    private List<String> urlsToSkip = List.of("/auth/sign-in","/auth/sign-out", "/api/cliente/registrarCliente",
-    "/swagger-ui.html", "/swagger-ui", "/api-docs",
-    "/api/conductor/sign-in","/api/conductor/sign-out","api/conductor/registrarConductor","api/despachador/registroDespachador");
+    private List<String> urlsToSkip = List.of("/auth/sign-in","/auth/sign-out",
+    "/swagger-ui.html", "/swagger-ui", "/api-docs","api/despachador/modificarDespachador/{cedula}",
+    "api/conductor/**","/api/despachador/registroDespachador","/api/vehiculos/registrarVehiculo",
+    "/api/conductor/registrarConductor", "/api/pedidos/registroPedido"); //eliminar url's no permmit all
 
-
-    /**
-     * Verifica si a la URI no se le debe aplicar el filtro
-     * @param request current HTTP request Petición a validar
-     * @return True la URI existe en la lista blanca, false de lo contrario
-     * @throws ServletException
-     */
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         System.out.println("en esta peticion se rompe");

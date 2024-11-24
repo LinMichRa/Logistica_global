@@ -31,8 +31,8 @@ public class Controcliente {
 
     @PostMapping("/registrarCliente")
     public ResponseEntity<cliente> guardarCliente(@ModelAttribute cliente cliente){
-        String password = cliente.getContraseña();
-        cliente.setContraseña(passwordEncoder.encode(password));
+        String password = cliente.getContrasena();
+        cliente.setContrasena(passwordEncoder.encode(password));
         cliente.setRol(Roles.CLIENTE);
         cliente clienteGuardado = clienteServicio.guardarCliente(cliente);
         return new ResponseEntity<>(clienteGuardado, HttpStatus.CREATED);

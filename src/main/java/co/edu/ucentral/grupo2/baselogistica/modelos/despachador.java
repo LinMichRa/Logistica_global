@@ -23,17 +23,14 @@ public class despachador{
     @Column(name="nombre")
     private String nombre;
 
-    @Column(name="tipo_documento")
-    private String tipo_documento;
-
     @Column(name="direccionBodega") //1 direccion default
-    private String direccionBodega;
+    private String bodega;
     
     @Column(name="correo")
     private String correo;
 
     @Column(name="contraseña")
-    private String contraseña;
+    private String contrasena;
 
     @Column(name="rol")
     private String rol;

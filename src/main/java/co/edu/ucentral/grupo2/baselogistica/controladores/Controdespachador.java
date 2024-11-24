@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,9 +31,9 @@ public class Controdespachador {
 
     //Definicion enrutamiento registrar despachador
     @PostMapping("/registroDespachador")
-    public ResponseEntity<despachador> guardarDespachador(@ModelAttribute despachador despachador){
-        String password=despachador.getContraseña();
-        despachador.setContraseña((passwordEncoder.encode(password)));
+    public ResponseEntity<despachador> guardarDespachador(@RequestBody despachador despachador){
+        String password=despachador.getContrasena();
+        despachador.setContrasena((passwordEncoder.encode(password)));
         despachador.setRol(Roles.ADMIN);
         despachador despachadorGuardado = despachadorServicio.guardarDespachador(despachador);
         return new ResponseEntity<>(despachadorGuardado, HttpStatus.CREATED);
