@@ -38,7 +38,7 @@ public class SerDespachador implements IDespachador{
     }
 
     public Optional<despachador> buscarDespachadorPorCedula( Long cedula){
-        return Despachadores.findById(cedula);
+        return Despachadores.findByCedula(cedula);
     }
 
     @Override

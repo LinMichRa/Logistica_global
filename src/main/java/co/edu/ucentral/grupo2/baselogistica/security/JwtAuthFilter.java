@@ -26,17 +26,38 @@ public class JwtAuthFilter extends OncePerRequestFilter{
     /**
      * Lista blanca de URIs
      */
-    private List<String> urlsToSkip = List.of("/auth/sign-in","/auth/sign-out",
-    "/swagger-ui.html", "/swagger-ui", "/api-docs","api/despachador/modificarDespachador/{cedula}",
-    "api/conductor/**","/api/despachador/registroDespachador","/api/vehiculos/registrarVehiculo",
-    "/api/conductor/registrarConductor", "/api/pedidos/registroPedido"); //eliminar url's no permmit all
+    private List<String> urlsToSkip = List.of(
+    "/auth/sign-in",
+    "/auth/sign-out",
+    "/swagger-ui.html",
+    "/swagger-ui",
+    "/api-docs",
+    "/api/despachador/modificarDespachador/**",
+    "/api/conductor/**",
+    "/api/despachador/registroDespachador",
+    "/api/vehiculos/registrarVehiculo",
+    "/api/conductor/registrarConductor",
+    "/api/pedidos/registroPedido",
+    "/api/despachador/buscarDespachadorPorCedula/**",
+    "/api/vehiculos/mostrarVehiculo",
+    "/api/vehiculos/buscarVehiculoPorID/**"
+);
+ //eliminar url's no permmit all
 
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        System.out.println("en esta peticion se rompe");
-        System.out.println(request.getRequestURI());
-        return urlsToSkip.stream().anyMatch(url -> request.getRequestURI().contains(url));
-    }
+ @Override
+ protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+  String requestUri = request.getRequestURI();
+  System.out.println("Evaluando URI: " + requestUri);
+
+  return urlsToSkip.stream().anyMatch(url -> {
+      if (url.endsWith("/**")) {
+          String baseUrl = url.replace("/**", "");
+          return requestUri.startsWith(baseUrl);
+      }
+      return requestUri.equals(url);
+  });
+ }
+ 
 
 
     /**

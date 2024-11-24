@@ -1,25 +1,16 @@
 package co.edu.ucentral.grupo2.baselogistica.Config;
 
-import static org.springframework.security.config.Customizer.*;
-
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import co.edu.ucentral.grupo2.baselogistica.exception.AccessDeniedHandlerException;
 import co.edu.ucentral.grupo2.baselogistica.security.JwtAuthFilter;
-import co.edu.ucentral.grupo2.baselogistica.security.Roles;
 
 /**
  * Clase que configura lo relacionado a las peticiones HTTP
@@ -49,6 +40,11 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); // Permite todo temporalmente
+        return http.build();
+    }
+    /*public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         
         http
                 .cors(withDefaults())
@@ -62,13 +58,16 @@ public class WebSecurityConfig {
                                 "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**","api/conductor/registrarConductor","api/conductor/**",
                                 "/api/conductor/sign-in","/api/conductor/sign-out","api/despachador/modificarDespachador",
                                 "/api/despachador/registroDespachador","/api/vehiculos/registrarVehiculo",
-                                "/api/conductor/registrarConductor", "/api/pedidos/registroPedido").permitAll() //eliminar url's no permmit all
+                                "/api/conductor/registrarConductor", "/api/pedidos/registroPedido","api/despachador/**",
+                                "/buscarDespachadorPorCedula/{cedula}").permitAll() 
+                                .requestMatchers("/buscarDespachadorPorCedula/**").permitAll()//eliminar url's no permmit all
+                                .requestMatchers("/api/despachador/buscarDespachadorPorCedula/**").permitAll()
                                 //.requestMatchers(HttpMethod.GET, "/customers").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
                                 .requestMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole(Roles.CLIENTE, Roles.ADMIN)
                                 .requestMatchers(HttpMethod.DELETE, "/cliente/**").hasRole(Roles.ADMIN)
                                 //.requestMatchers(HttpMethod.DELETE, "/customers/**").hasAuthority("ELIMINAR_PRIVILEGE")
-                                .requestMatchers(HttpMethod.GET, "api/despachador/**").hasAuthority(Roles.ADMIN)
-                                .requestMatchers(HttpMethod.POST, "/despachador/**").hasAuthority(Roles.ADMIN)
+                                //.requestMatchers(HttpMethod.GET, "api/despachador/**").hasAuthority(Roles.ADMIN)
+                                //.requestMatchers(HttpMethod.POST, "/despachador/**").hasAuthority(Roles.ADMIN)
 
                                 .requestMatchers(HttpMethod.GET, "/pedidos/**").hasAnyRole(Roles.CLIENTE, Roles.CONDUCTOR, Roles.ADMIN)
                                 .requestMatchers(HttpMethod.DELETE, "/pedidos/**").hasAnyRole(Roles.ADMIN)
@@ -84,9 +83,9 @@ public class WebSecurityConfig {
 
                 );
         return http.build();
-    }
+    }*/
 
-    @Bean
+    /*@Bean
 CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
 
@@ -108,6 +107,19 @@ CorsConfigurationSource corsConfigurationSource() {
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
     return source;
+}*/
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+        @Override
+        public void addCorsMappings(CorsRegistry registry) {
+            registry.addMapping("/**")
+                    .allowedOrigins("http://localhost:4200") // Cambia según el dominio del frontend
+                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                    .allowedHeaders("*")
+                    .allowCredentials(true);
+        }
+    };
 }
 
 

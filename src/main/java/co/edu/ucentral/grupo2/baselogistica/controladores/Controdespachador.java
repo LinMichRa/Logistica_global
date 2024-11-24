@@ -56,8 +56,10 @@ public class Controdespachador {
         Optional <despachador> despachadorOptional = despachadorServicio.buscarDespachadorPorCedula(cedula);
 
         if(despachadorOptional.isEmpty()){
+            System.out.println("No se encontró el despachador con cédula: " + cedula);
             return ResponseEntity.notFound().build();
         }
+        System.out.println("Despachador encontrado: " + despachadorOptional.get());
         return ResponseEntity.ok(despachadorOptional.get());
     }
 }

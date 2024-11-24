@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.ucentral.grupo2.baselogistica.modelos.conductor;
+import co.edu.ucentral.grupo2.baselogistica.modelos.vehiculo;
+import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoVehiculos;
 import co.edu.ucentral.grupo2.baselogistica.security.Roles;
 import co.edu.ucentral.grupo2.baselogistica.servicios.SerConductor;
 import lombok.RequiredArgsConstructor;
@@ -26,18 +28,31 @@ public class Controconductor {
     @Autowired
     private SerConductor conductorServicio;
 
+    @Autowired
+    private RepoVehiculos vehiculoRepository;
 
     private final PasswordEncoder passwordEncoder;
 
     //Definicion enrutamiento registrar conductor
     @PostMapping("/registrarConductor")
-    public ResponseEntity<conductor> guardarConductor(@RequestBody conductor conductor){
-        String password = conductor.getContrasena();
-        conductor.setContrasena(passwordEncoder.encode(password));
-        conductor.setRol(Roles.CONDUCTOR);
-        conductor conductorGuardado = conductorServicio.guardarConductor(conductor);
-        return new ResponseEntity<>(conductorGuardado, HttpStatus.CREATED);
+public ResponseEntity<conductor> guardarConductor(@RequestBody conductor conductor) {
+    // Decodifica la contraseña
+    String password = conductor.getContrasena();
+    conductor.setContrasena(passwordEncoder.encode(password));
+    conductor.setRol(Roles.CONDUCTOR);
+
+    // Si se envía un ID de vehículo, busca el vehículo en la base de datos
+    if (conductor.getVehiculo() != null && conductor.getVehiculo().getId() != 0) {
+        vehiculo vehiculo = vehiculoRepository.findById(conductor.getVehiculo().getId())
+                .orElseThrow(() -> new RuntimeException("Vehículo no encontrado"));
+        conductor.setVehiculo(vehiculo); // Asigna el vehículo encontrado al conductor
     }
+
+    conductor conductorGuardado = conductorServicio.guardarConductor(conductor);
+    return new ResponseEntity<>(conductorGuardado, HttpStatus.CREATED);
+}
+
+
     
     @PostMapping("/modificarCoductor/{cedula}")
     public ResponseEntity<conductor>modificarVehiculo(@PathVariable("cedula") Long cedula, @ModelAttribute conductor conductor){

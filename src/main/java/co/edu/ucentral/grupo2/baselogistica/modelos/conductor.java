@@ -2,6 +2,8 @@ package co.edu.ucentral.grupo2.baselogistica.modelos;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,6 +49,7 @@ public class conductor{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vehiculo_id", referencedColumnName = "id")
+    @JsonManagedReference
     private vehiculo vehiculo;
 
     @OneToMany(mappedBy = "conductor")
