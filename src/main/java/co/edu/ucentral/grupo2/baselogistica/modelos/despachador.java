@@ -1,7 +1,10 @@
 package co.edu.ucentral.grupo2.baselogistica.modelos;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,5 +37,8 @@ public class despachador{
 
     @Column(name="rol")
     private String rol;
+
+    @OneToMany(mappedBy = "admin")
+    private List<pedido> pedidos;
 
 }

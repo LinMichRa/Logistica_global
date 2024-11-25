@@ -13,6 +13,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import javassist.bytecode.CodeAttribute.RuntimeCopyException;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -22,6 +23,10 @@ import lombok.RequiredArgsConstructor;
 public class JwtAuthFilter extends OncePerRequestFilter{
 
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
+
+    private final JwtAuthenticationProviderConductor jwtAuthenticationProviderCon;
+
+    private final JwtAuthenticationProviderDespachador jwtAuthenticationProviderDes;
 
     /**
      * Lista blanca de URIs
@@ -40,12 +45,15 @@ public class JwtAuthFilter extends OncePerRequestFilter{
     "/api/pedidos/registroPedido",
     "/api/despachador/buscarDespachadorPorCedula/**",
     "/api/vehiculos/mostrarVehiculo",
-    "/api/vehiculos/buscarVehiculoPorID/**"
+    "/api/vehiculos/buscarVehiculoPorID/**",
+    "/api/pedidos/pendientes/count",
+    "/api/pedidos/pendientes",
+    "/api/pedidos/**"
 );
  //eliminar url's no permmit all
 
  @Override
- protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+  protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
   String requestUri = request.getRequestURI();
   System.out.println("Evaluando URI: " + requestUri);
 
@@ -110,9 +118,30 @@ public class JwtAuthFilter extends OncePerRequestFilter{
             System.out.println(SecurityContextHolder.getContext().getAuthentication());
         } catch (RuntimeException e) {
             SecurityContextHolder.clearContext();
-            System.out.println("se estalló");
-            System.out.println(e);
-            throw new RuntimeException(e);
+            System.out.println("2do intento");
+            try{
+                Authentication auth = jwtAuthenticationProviderCon.validateToken(authElements[1]);
+                SecurityContextHolder.getContext().setAuthentication(auth);
+
+                System.out.println("voy a imprimir el context");
+                System.out.println(SecurityContextHolder.getContext());
+                System.out.println("voy a imprimir la autenticacion");
+                System.out.println(SecurityContextHolder.getContext().getAuthentication());
+            }catch(RuntimeException ex){
+                SecurityContextHolder.clearContext();
+                System.out.println("3er intento");
+                try{
+                    Authentication auth = jwtAuthenticationProviderDes.validateToken(authElements[1]);
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                    System.out.println("voy a imprimir el context");
+                    System.out.println(SecurityContextHolder.getContext());
+                    System.out.println("voy a imprimir la autenticacion");
+                    System.out.println(SecurityContextHolder.getContext().getAuthentication());
+                }catch(RuntimeCopyException exc){
+                    System.out.println(e);
+                    throw new RuntimeException(e);
+                }
+            }
         }
         System.out.println("llegué aqui");
 

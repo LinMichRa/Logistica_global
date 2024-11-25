@@ -44,10 +44,10 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); // Permite todo temporalmente
         return http.build();
     }
-    /*public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+   /*public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         
-        http
-                .cors(withDefaults())
+       /*  http
+                //.cors(withDefaults())
                 //.exceptionHandling(handling -> handling.accessDeniedHandler(accessDeniedHandlerException))
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -59,12 +59,13 @@ public class WebSecurityConfig {
                                 "/api/conductor/sign-in","/api/conductor/sign-out","api/despachador/modificarDespachador",
                                 "/api/despachador/registroDespachador","/api/vehiculos/registrarVehiculo",
                                 "/api/conductor/registrarConductor", "/api/pedidos/registroPedido","api/despachador/**",
-                                "/buscarDespachadorPorCedula/{cedula}").permitAll() 
+                                "/buscarDespachadorPorCedula/{cedula}").permitAll()
                                 .requestMatchers("/buscarDespachadorPorCedula/**").permitAll()//eliminar url's no permmit all
                                 .requestMatchers("/api/despachador/buscarDespachadorPorCedula/**").permitAll()
                                 //.requestMatchers(HttpMethod.GET, "/customers").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
                                 .requestMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole(Roles.CLIENTE, Roles.ADMIN)
-                                .requestMatchers(HttpMethod.DELETE, "/cliente/**").hasRole(Roles.ADMIN)
+                                .requestMatchers(HttpMethod.GET, "/cliente/**","/api/pedidos/pendientes/count","/api/pedidos/pendientes",
+                                "/api/pedidos/**").hasRole(Roles.ADMIN)
                                 //.requestMatchers(HttpMethod.DELETE, "/customers/**").hasAuthority("ELIMINAR_PRIVILEGE")
                                 //.requestMatchers(HttpMethod.GET, "api/despachador/**").hasAuthority(Roles.ADMIN)
                                 //.requestMatchers(HttpMethod.POST, "/despachador/**").hasAuthority(Roles.ADMIN)
@@ -86,7 +87,7 @@ public class WebSecurityConfig {
     }*/
 
     /*@Bean
-CorsConfigurationSource corsConfigurationSource() {
+    CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
 
     // Especificar explícitamente los orígenes permitidos
@@ -108,6 +109,8 @@ CorsConfigurationSource corsConfigurationSource() {
     source.registerCorsConfiguration("/**", configuration);
     return source;
 }*/
+
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {

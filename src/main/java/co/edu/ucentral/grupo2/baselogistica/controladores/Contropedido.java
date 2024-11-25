@@ -16,14 +16,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.edu.ucentral.grupo2.baselogistica.modelos.despachador;
 import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
 import co.edu.ucentral.grupo2.baselogistica.repositorios.RepoPedido;
+import co.edu.ucentral.grupo2.baselogistica.servicios.SerDespachador;
 import co.edu.ucentral.grupo2.baselogistica.servicios.SerPedidos;
 
 @RestController
@@ -36,14 +39,40 @@ public class Contropedido {
     @Autowired
     private RepoPedido repoPedido;
 
+    @Autowired
+    private SerDespachador serDespachador;
+
     private static String uploadDirectory = System.getProperty("user.dir") + "uploads";
 
-    //Defincion enrutamiento registrar pedido
     @PostMapping("/registroPedido")
-    public ResponseEntity<pedido> guardarPedido (@RequestBody pedido pedido){
-        pedido pedidoGuardado = pedidosServicio.guardaPedido(pedido);
-        return new ResponseEntity<>(pedidoGuardado, HttpStatus.CREATED);
+    public ResponseEntity<?> guardarPedido(@RequestBody pedido pedido) {
+    try {
+        // Validar que el adminId esté presente
+        if (pedido.getAdmin() == null || pedido.getAdmin().getCedula() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El adminId es obligatorio");
+        }
+
+        // Busca al administrador por ID
+        Long adminId = pedido.getAdmin().getCedula();
+        Optional<despachador> adminOptional = serDespachador.buscarDespachadorPorCedula(adminId);
+
+        if (adminOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Administrador no encontrado");
+        }
+
+        // Asocia el administrador al pedido
+        pedido.setAdmin(adminOptional.get());
+
+        // Guarda el pedido con el administrador asociado
+        pedido savedPedido = pedidosServicio.guardaPedido(pedido);
+
+        return ResponseEntity.ok(savedPedido);
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al guardar el pedido");
     }
+}
+
+
 
     //Ruta para guardar la modificacioin del pedido
     @PostMapping("/modificarPedido/{id}")
@@ -119,4 +148,32 @@ public class Contropedido {
         return ResponseEntity.ok(pedidoOptional.get());
     }
 
+    // Controlador de Pedidos
+
+    // Contar pedidos sin conductor
+    @GetMapping("/pendientes/count")
+    public ResponseEntity<Long> contarPedidosSinConductor() {
+        Long count = pedidosServicio.contarPedidosSinConductor();
+        return ResponseEntity.ok(count);
+    }
+
+    // Obtener lista de pedidos sin conductor
+    @GetMapping("/pendientes")
+    public ResponseEntity<List<pedido>> obtenerPedidosSinConductor() {
+        List<pedido> pendientes = pedidosServicio.obtenerPedidosSinConductor();
+        return ResponseEntity.ok(pendientes);
+    }
+
+    // Asignar conductor a un pedido
+    @PutMapping("/{id}/asignarConductor")
+    public ResponseEntity<?> asignarConductor(
+            @PathVariable Long id,
+            @RequestParam Long conductorId) {
+        try {
+            pedidosServicio.asignarConductor(id, conductorId);
+            return ResponseEntity.ok("Conductor asignado correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
 }

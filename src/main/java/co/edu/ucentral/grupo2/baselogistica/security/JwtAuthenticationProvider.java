@@ -80,7 +80,6 @@ public class JwtAuthenticationProvider {
             throw new BadCredentialsException("Usuario no registrado.");
         }
 
-
         //Creo un UserDetails pero cuando voy a roles() lo que esta es una nueva autoridad con prefijo ROLES_
         /*
         UserDetails userTest = User.withUsername(exists.getFullName()).password(exists.getPassword()).roles(exists.getRol()).build();

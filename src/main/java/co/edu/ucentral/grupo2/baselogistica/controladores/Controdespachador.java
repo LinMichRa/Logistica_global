@@ -59,7 +59,6 @@ public class Controdespachador {
             System.out.println("No se encontró el despachador con cédula: " + cedula);
             return ResponseEntity.notFound().build();
         }
-        System.out.println("Despachador encontrado: " + despachadorOptional.get());
         return ResponseEntity.ok(despachadorOptional.get());
     }
 }
