@@ -89,5 +89,10 @@ public class SerPedidos {
     public List<pedido> obtenerPedidosPorAdmin(Long adminId) {
         return pedidoRepository.findByAdmin(adminId);
     }
+
+    public pedido buscarPorNumeroTracking(String trackingNumber) {
+        return pedidoRepository.findByNumeroTracking(trackingNumber);
+    }
+    
 }
 
