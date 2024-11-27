@@ -176,4 +176,9 @@ public class Contropedido {
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
+
+    @GetMapping("/admin/{adminId}")
+    public List<pedido> obtenerPedidosPorAdmin(@PathVariable Long adminId) {
+        return pedidosServicio.obtenerPedidosPorAdmin(adminId);
+    }
 }

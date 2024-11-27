@@ -85,5 +85,9 @@ public class SerPedidos {
         // Guardar cambios en la base de datos
         pedidoRepository.save(pedido);
     }
+
+    public List<pedido> obtenerPedidosPorAdmin(Long adminId) {
+        return pedidoRepository.findByAdmin(adminId);
+    }
 }
 

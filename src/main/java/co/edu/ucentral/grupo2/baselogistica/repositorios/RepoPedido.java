@@ -19,4 +19,7 @@ public interface RepoPedido extends  JpaRepository <pedido,Integer> {
     List<pedido> obtenerPedidosSinConductor();
 
     Optional<pedido> findById(long id);
+
+    @Query("SELECT p FROM pedido p WHERE p.conductor IS NULL AND p.admin.cedula=?1")
+    List<pedido> findByAdmin(Long adminId);
 }
