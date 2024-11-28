@@ -1,7 +1,8 @@
 co\edu\ucentral\grupo2\baselogistica\exception\CustomerExistsException.class
 co\edu\ucentral\grupo2\baselogistica\Config\WebSecurityConfig.class
-co\edu\ucentral\grupo2\baselogistica\useCase\IAuthUseCaseConductor.class
+co\edu\ucentral\grupo2\baselogistica\Config\WebSecurityConfig$1.class
 co\edu\ucentral\grupo2\baselogistica\security\Roles.class
+co\edu\ucentral\grupo2\baselogistica\controladores\AuthController.class
 co\edu\ucentral\grupo2\baselogistica\exception\EmailValidationException.class
 co\edu\ucentral\grupo2\baselogistica\controladores\Controcliente.class
 co\edu\ucentral\grupo2\baselogistica\security\JwtAuthenticationProviderConductor.class
@@ -10,6 +11,7 @@ co\edu\ucentral\grupo2\baselogistica\repositorios\RepoDespachador.class
 co\edu\ucentral\grupo2\baselogistica\modelos\despachador.class
 co\edu\ucentral\grupo2\baselogistica\domain\IConductor.class
 co\edu\ucentral\grupo2\baselogistica\modelos\despachador$despachadorBuilder.class
+co\edu\ucentral\grupo2\baselogistica\domain\IDespachador.class
 co\edu\ucentral\grupo2\baselogistica\servicios\SerPedidos.class
 co\edu\ucentral\grupo2\baselogistica\useCase\IClienteUseCase.class
 co\edu\ucentral\grupo2\baselogistica\security\JwtAuthenticationProvider.class
@@ -17,10 +19,12 @@ co\edu\ucentral\grupo2\baselogistica\servicios\SerDespachador.class
 co\edu\ucentral\grupo2\baselogistica\Config\ApplicationConfig.class
 co\edu\ucentral\grupo2\baselogistica\exception\PurchaseNotExistException.class
 co\edu\ucentral\grupo2\baselogistica\modelos\pedido$pedidoBuilder.class
+co\edu\ucentral\grupo2\baselogistica\security\JwtAuthenticationProviderDespachador.class
 co\edu\ucentral\grupo2\baselogistica\modelos\cliente$clienteBuilder.class
 co\edu\ucentral\grupo2\baselogistica\modelos\conductor.class
 co\edu\ucentral\grupo2\baselogistica\modelos\pedido.class
 co\edu\ucentral\grupo2\baselogistica\servicios\SerVehiculos.class
+co\edu\ucentral\grupo2\baselogistica\useCase\IDespachador.class
 co\edu\ucentral\grupo2\baselogistica\responses\ResponseDespachador.class
 co\edu\ucentral\grupo2\baselogistica\servicios\SerCliente.class
 co\edu\ucentral\grupo2\baselogistica\controladores\Controvehiculo.class

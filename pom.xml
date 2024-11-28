@@ -11,7 +11,7 @@
 	<groupId>co.edu.ucentral.grupo2</groupId>
 	<artifactId>baselogistica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>baselogistica-backend</name>
 	<description>Proyecto para la gestión para una empresa de envios (parte backend)</description>
 	<url/>

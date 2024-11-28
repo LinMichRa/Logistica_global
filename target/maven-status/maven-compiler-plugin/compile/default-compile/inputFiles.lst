@@ -1,6 +1,7 @@
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\BaselogisticaBackendApplication.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\Config\ApplicationConfig.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\Config\WebSecurityConfig.java
+c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\controladores\AuthController.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\controladores\Controcliente.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\controladores\Controconductor.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\controladores\Controdespachador.java
@@ -8,6 +9,7 @@ c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backen
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\controladores\Controvehiculo.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\domain\ICliente.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\domain\IConductor.java
+c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\domain\IDespachador.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\dto\AuthDto.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\dto\JwtResponseDto.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\exception\AccessDeniedHandlerException.java
@@ -33,6 +35,7 @@ c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backen
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\responses\ResponseDespachador.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\security\JwtAuthenticationProvider.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\security\JwtAuthenticationProviderConductor.java
+c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\security\JwtAuthenticationProviderDespachador.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\security\JwtAuthFilter.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\security\Roles.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\servicios\AuthService.java
@@ -43,6 +46,6 @@ c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backen
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\servicios\SerVehiculos.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\ServletInitializer.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\useCase\IAuthUseCase.java
-c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\useCase\IAuthUseCaseConductor.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\useCase\IClienteUseCase.java
 c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\useCase\IConductorCase.java
+c:\Users\User\OneDrive\Desktop\Angular\logistica-backend\Logistica_global_backend\src\main\java\co\edu\ucentral\grupo2\baselogistica\useCase\IDespachador.java
