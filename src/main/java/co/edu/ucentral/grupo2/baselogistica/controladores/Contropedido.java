@@ -176,4 +176,24 @@ public class Contropedido {
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
+
+    @GetMapping("/admin/{adminId}")
+    public List<pedido> obtenerPedidosPorAdmin(@PathVariable Long adminId) {
+        return pedidosServicio.obtenerPedidosPorAdmin(adminId);
+    }
+
+    @GetMapping("/tracking/{trackingNumber}")
+    public ResponseEntity<?> buscarPedidoPorTracking(@PathVariable String trackingNumber) {
+        try {
+            pedido pedido = pedidosServicio.buscarPorNumeroTracking(trackingNumber);
+            if (pedido != null) {
+                return ResponseEntity.ok(pedido);
+            } else {
+                return ResponseEntity.status(404).body("Pedido no encontrado");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+
 }

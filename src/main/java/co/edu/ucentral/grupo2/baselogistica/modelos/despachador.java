@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name= "despachadores")
 @Builder
-
+//admin
 public class despachador{
     @Id
     @Column(name="cedula", nullable =false, unique = true )

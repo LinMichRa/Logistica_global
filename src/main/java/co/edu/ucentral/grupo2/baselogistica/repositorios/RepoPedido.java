@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import co.edu.ucentral.grupo2.baselogistica.modelos.pedido;
@@ -19,4 +20,11 @@ public interface RepoPedido extends  JpaRepository <pedido,Integer> {
     List<pedido> obtenerPedidosSinConductor();
 
     Optional<pedido> findById(long id);
+
+    @Query("SELECT p FROM pedido p WHERE p.conductor IS NULL AND p.admin.cedula=?1")
+    List<pedido> findByAdmin(Long adminId);
+
+    @Query("SELECT p FROM pedido p WHERE p.id = :trackingNumber")
+    pedido findByNumeroTracking(@Param("trackingNumber") String trackingNumber);
+
 }
